@@ -13,11 +13,19 @@ export default function RepoList() {
   useEffect(() => {
     async function getAllRepos() {
       try {
-        setLoading(true);
-        const { data, status } = await api.get("/orgs/godaddy/repos");
-        if (status === 200) {
-          setRepos(data);
+        const publicRepos = localStorage.getItem("public_repos");
+
+        if (publicRepos) {
+          setRepos(JSON.parse(publicRepos));
           setError(null);
+        } else {
+          setLoading(true);
+          const { data, status } = await api.get("/orgs/godaddy/repos");
+          if (status === 200) {
+            localStorage.setItem("public_repos", JSON.stringify(data));
+            setRepos(data);
+            setError(null);
+          }
         }
       } catch (e) {
         setRepos([]);
@@ -40,15 +48,35 @@ export default function RepoList() {
         {error && <span className={styles.error}>{error}</span>}
         {repos && (
           <ul className={styles.items}>
-            {repos.map(({ id, name }) => (
-              <li key={name} className={styles.item}>
-                <div>
-                  <Link to={`/repository/${id}`}>
+            {repos.map(
+              ({
+                description,
+                forks_count,
+                html_url,
+                id,
+                language,
+                name,
+                open_issues_count,
+                watchers,
+              }) => (
+                <li key={name} className={styles.item}>
+                  <Link
+                    to={`/repository/${id}`}
+                    state={{
+                      description,
+                      forks_count,
+                      html_url,
+                      language,
+                      name,
+                      open_issues_count,
+                      watchers,
+                    }}
+                  >
                     <p>{name}</p>
                   </Link>
-                </div>
-              </li>
-            ))}
+                </li>
+              )
+            )}
           </ul>
         )}
       </div>

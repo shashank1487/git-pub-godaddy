@@ -1,0 +1,77 @@
+@import "../../css/colors.scss";
+
+.container {
+    max-width: 800px;
+    background: $white;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 90px auto;
+    position: relative;
+    max-height: 800px;
+
+    & > a {
+        color: $header;
+        display: inline-block;
+        font-size: 10px;
+        margin-bottom: 20px;
+        text-decoration: none;
+
+        &:hover {
+            color: $hover;
+        }
+    }
+
+    .card {
+        padding: 5px 20px 20px 20px;
+        border-radius: 2px;
+        border: 1px solid $border;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+        .item {
+            margin: 3px 0;
+
+            & > a {
+                color: $header;
+                font-size: 16px;
+                text-decoration: none;
+
+                &:hover {
+                    color: $hover;
+                }
+            }
+            .title {
+                font-size: 22px;
+                color: $header;
+                margin-bottom: 5px;
+
+                &::first-letter {
+                    transform: scale(1.2);
+                    text-transform: capitalize;
+                }
+            }
+
+            .tags {
+                font-size: 12px;
+                font-weight: bold;
+                background: $header;
+                color: $white;
+                padding: 4px 8px;
+                border-radius: 3px;
+                margin-right: 8px;
+            }
+
+            .description,
+            .language {
+                font-size: 12px;
+                color: #666;
+                line-height: 2;
+            }
+
+            .language {
+                color: orange;
+                line-height: 0;
+            }
+        }
+    }
+}
