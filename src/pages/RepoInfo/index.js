@@ -8,7 +8,6 @@ import styles from "./RepoInfo.module.scss";
 export default function RepoInfo() {
   const location = useLocation();
   const data = location.state;
-  console.log(data);
 
   return (
     <div className={styles.container}>
@@ -24,7 +23,7 @@ export default function RepoInfo() {
         </div>
         <div className={styles.item}>
           {data.forks_count !== undefined && (
-            <span className={styles.tags}>
+            <span data-testid="forks" className={styles.tags}>
               <GoRepoForked />
               {`${+data.forks_count} ${
                 data.forks_count === 1 ? "fork" : "forks"
@@ -32,7 +31,7 @@ export default function RepoInfo() {
             </span>
           )}
           {data.open_issues_count !== undefined && (
-            <span className={styles.tags}>
+            <span data-testid="issues" className={styles.tags}>
               <GoBug />
               {`${+data.open_issues_count} open ${
                 data.open_issues_count === 1 ? "issue" : "issues"
@@ -40,7 +39,7 @@ export default function RepoInfo() {
             </span>
           )}
           {data.watchers !== undefined && (
-            <span className={styles.tags}>
+            <span data-testid="watchers" className={styles.tags}>
               <GoWatch />
               {`${+data.watchers} ${
                 data.watchers === 1 ? "watcher" : "watchers"
@@ -49,13 +48,13 @@ export default function RepoInfo() {
           )}
         </div>
         <div className={styles.item}>
-          <p className={styles.description}>
+          <p data-testid="description" className={styles.description}>
             {data.description || "No description available"}
           </p>
         </div>
         <div className={styles.item}>
           <strong>
-            <p className={styles.language}>
+            <p data-testid="language" className={styles.language}>
               {data.language || "No language info available"}
             </p>
           </strong>
