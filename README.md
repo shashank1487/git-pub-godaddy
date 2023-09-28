@@ -4,7 +4,7 @@ This project was bootstrapped using [Create React App](https://github.com/facebo
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, switch to master branch and run:
 
 ### `npm install` and then `npm start`
 
